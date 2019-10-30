@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="service.formModel" >
+      <h1 class="addProductHeader">Add Product and Information</h1>
+      <div class="form-group">
+        <table class="formBlock">
+          <tbody>
+              <tr>
+                  <td>
+                    <label class="controlLabel">Product ID</label>
+                  </td>
+                  <td>
+                    <input formControlName="ProductID" disabled="true" type="text"  class="form-control">
+                  </td>
+                </tr>
+            <tr>
+              <td>
+                <label class="controlLabel">Product Name</label>
+              </td>
+              <td>
+                <input formControlName="ProductName" type="text"  class="form-control">
+              </td>
+            </tr>
+            <tr>
+                <td><label class="controlLabel">Category</label></td>
+                <td>
+                    <select formControlName="ProductCategory" type="text" class="form-control">
+                      <option value="freshfood">Fresh Food</option>
+                      <option value="pantry">Pantry</option>
+                      <option value="household">Household & Cleaning</option>
+                      <option value="baby">Baby</option>
+                      <option value="health">Health & Beauty</option>
+                      <option value="electronics">Electronics & Office</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="controlLabel">Sub Category</label></td>
+                <td>
+                    <input  type="text" formControlName="ProductSubCategory"  class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td><label class="controlLabel">
+                  ProductPrice
+                </label></td>
+                <td>
+                    <input formControlName="ProductPrice"  type="text" class="form-control">
+                </td>
+            </tr>
+            <tr>
+              <td><label class="controlLabel">
+                ProductPreviousPrice
+              </label></td>
+              <td>
+                  <input formControlName="ProductPreviousPrice"  type="text" class="form-control">
+              </td>
+          </tr>
+            <tr>
+                <td><label class="controlLabel">
+                  Brand
+                </label></td>
+                <td>
+                    <input formControlName="ProductBrand" type="text" class="form-control">
+                </td>
+            </tr>
+            <tr>
+              <td><label class="controlLabel">
+                Mass
+              </label></td>
+              <td>
+                  <input formControlName="ProductMass" type="text" class="form-control">
+              </td>
+          </tr>
+          <tr>
+            <td><label class="controlLabel">
+              Barcode
+            </label></td>
+            <td>
+                <input formControlName="ProductBarcode" type="text" class="form-control">
+            </td>
+        </tr>
+          </tbody>
+        </table>
+        <tr>
+          <td>
+            <input  type="text"   formControlName="ProductImage" class="form-control" >
+          </td>
+        </tr>
+        <div style="display: flex">
+          <button style="width: 12em; height: 3em; margin: 1em; background: #FFFFFF; color:#795548; border:#795548 1px solid; border-radius: 0px; font-weight:bold"  class="btn-bottom btn-primary" id="btn-submit" (click)=onAddProduct()>Save Product</button>
+        <button class="btn-bottom btn-primary" style=" height: 3em; width: 12em; margin: 1em; width: 12em;  background: #FFFFFF; color:#795548; border:#795548 1px solid; border-radius: 0px; font-weight:bold"  id="btn-update" (click)="SaveChanges()">Save Changes</button>
+       </div>
+        
+      </div>
+    </form>
+  </div>
+<div class="row">
+  <div class="col-md-9 products">
+    <table class="table table-borderless product-list">
+      <thead class="thead">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Mass</th>
+        <th>Remove</th>
+        <th>Edit</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="">
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td>
+                <button class="fa fa-trash button1" (click)="OnRemove(product.productID)" ></button>
+           </td>
+           <td>
+              <button class="fa fa-edit button2" (click)="OnEdit(product)"></button>
+         </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  
+</div>
+

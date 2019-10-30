@@ -1,0 +1,76 @@
+<div class="col-md-7 content">
+  <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+    <h1 class="welcomeHeader">Register for Online Shopping</h1>
+    <div>
+      <h3 class="subHeaderArea">
+          Sign up in seconds to start shopping online, and get groceries and more delivered to your door.
+      </h3>
+    </div>
+        <div class="form-group">
+            <label class="controlLabel">First Name</label>
+            <input formControlName="FirstName" type="text"  class="form-control" required>
+            <label class="text-danger"  *ngIf="service.formModel.get('FirstName').touched && service.formModel.get('FirstName').errors?.required">First Name is required</label>
+        </div>
+        <div class="form-group">
+            <label class="controlLabel">Surname</label>
+            <input formControlName="LastName" type="text" class="form-control" required>
+            <label class="text-danger" *ngIf="service.formModel.get('LastName').touched && service.formModel.get('LastName').errors?.required">Last Name is required</label>
+        </div>
+           <div class="form-group">
+              <label class="controlLabel">Email Address</label>
+              <input type="text" formControlName="Email"  class="form-control" required>
+              <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email is required</label>
+           </div>
+           <div formGroupName="Passwords">
+            <div class="form-group">
+              <label class="controlLabel">
+                  Password
+                </label>
+                <input formControlName="Password"  type="password" class="form-control" required>
+                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Password is required.</label>
+                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 5 characters required.</label>
+          </div>
+          <div class="form-group">
+              <label class="controlLabel">
+                  Confirm Password
+                </label>
+                 <input formControlName="ConfirmPassword" type="password" class="form-control">
+                 <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Please confirm password.</label>
+                 <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Passwords does not match.</label>
+              </div>
+           </div>
+           
+      <div class="form-group">
+          <label class="controlLabel">Mobile Number</label>
+          <input formControlName="Mobile" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+          <label class="controlLabel">Street Address </label> 
+          <input formControlName="StreetAddress"  type="text" class="form-control">
+      </div>
+      <div class="form-group">
+          <label class="controlLabel">Suburb</label>
+          <input formControlName="Suburb"  type="text" class="form-control">
+      </div>
+      <div class="form-group">
+          <label class="controlLabel">City</label>
+          <input formControlName="City"  type="text" class="form-control">
+      </div>
+      <div class="form-group">
+          <label class="controlLabel">Postal Code
+            </label>
+            <input formControlName="PostalCode" type="input" class="form-control">
+      </div>
+      <div class="form-group">
+          <label class="controlLabel">
+              Province
+            </label>
+            <input formControlName="Province"  type="dropdown" class="form-control">
+      </div>
+        <div class="form-row">
+          <div class="form-group">
+              <button class="btn btn-primary" style="height: 3em; width:10em; margin-left:2em; background: #FFFFFF; color:#795548; border:#795548 1px solid; border-radius: 0px; font-weight:bold"  class="btn btn-primary" type="submit" [disabled]="!service.formModel.valid">Accept and Register</button>
+          </div>
+        </div>
+  </form>
+</div>
