@@ -11,15 +11,7 @@ li {
   li {
     float: right;
   }
-  footer{
-    position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color:#efebe9;
-   color: #616161;
-   text-align: center;
- }
+  
   li a {
     display: block;
     padding: 5px;
@@ -31,9 +23,14 @@ li {
     margin-right: 8px;
     text-decoration: none;
   }
+  .header{
+    overflow: hidden;
+  }
   .navbar{
       background-color: #795548;
       height: 50px;
+      overflow: hidden;
+      display: flexbox;
   }
   p{
       color: #fff;
@@ -49,6 +46,23 @@ li {
       border-radius: 2px;
   }
   div{
-      margin-bottom: 5px;
+      margin-bottom: 0px;
   }
+  *{
+    padding: 0px;
+    margin: 0px;
+  }
+
+ footer{
+   background: #424242;
+   width: 100%;
+   color: #fff;
+   bottom: 0;
+ }
+ 
+  
+  
+  
+  
+  
  

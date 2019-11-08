@@ -28,7 +28,7 @@
                 </label>
                 <input formControlName="Password"  type="password" class="form-control" required>
                 <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Password is required.</label>
-                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 5 characters required.</label>
+                <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Minimum 8 characters required.</label>
           </div>
           <div class="form-group">
               <label class="controlLabel">

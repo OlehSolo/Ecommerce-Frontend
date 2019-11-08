@@ -1,22 +1,41 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { JwtResponse } from '../response/JwtResponse';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
+  private currentUserSubject: BehaviorSubject<JwtResponse>;
+    public currentUser: Observable<JwtResponse>;
+    public nameTerms = new Subject<string>();
+    public name$ = this.nameTerms.asObservable();
+  constructor(public formBuilder: FormBuilder, 
+    private http: HttpClient,
+    private cookieService: CookieService) { 
 
-  constructor(public formBuilder: FormBuilder, private http: HttpClient) { }
+      
+        const memo = localStorage.getItem('currentUser');
+        this.currentUserSubject = new BehaviorSubject<JwtResponse>(JSON.parse(memo));
+        this.currentUser = this.currentUserSubject.asObservable();
+        cookieService.set('currentUser', memo);
+    }
 
-  readonly baseURI = 'http://localhost:8080/api';
+  readonly baseURI = 'http://localhost:8080/api/auth';
+
+  get currentUserValue() {
+    return this.currentUserSubject.value;
+}
 
   formModel = this.formBuilder.group({
     FirstName: ['', Validators.required],
     LastName: ['', Validators.required],
     Email: ['', Validators.required],
     Passwords: this.formBuilder.group({
-      Password: ['', [Validators.required, Validators.minLength(5)]],
+      Password: ['', [Validators.required, Validators.minLength(8)]],
       ConfirmPassword: ['', Validators.required]
     }, { validator: this.comparePasswords }),
     Mobile: [''],
@@ -42,18 +61,24 @@ export class RegisterService {
   register(){
 
     var body = {
-      firstName : this.formModel.value.FirstName,
+      name : this.formModel.value.FirstName,
       lastName : this.formModel.value.LastName,
-      emailAddress : this.formModel.value.Email,
       phoneNumber : this.formModel.value.Mobile,
+      username : this.formModel.value.Email,
+      email : this.formModel.value.Email,
+      password : this.formModel.value.Passwords.Password,
       streetAddress : this.formModel.value.StreetAddress,
       suburb : this.formModel.value.Suburb,
       city : this.formModel.value.City,
       postalCode : this.formModel.value.PostalCode,
       province : this.formModel.value.Province,
-      password : this.formModel.value.Passwords.Password
+      
     //  IDNumber : this.formModel.value.IDNumber
     };
-    return this.http.post(this.baseURI + '/customers', body);
+    return this.http.post(this.baseURI + '/signup', body);
+  }
+  signIn(usernameOrEmail, password){
+    var data = {usernameOrEmail , password};
+    return this.http.post(this.baseURI + '/login', data);
   }
 }

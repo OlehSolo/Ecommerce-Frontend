@@ -31,12 +31,12 @@
     padding: 6px 10px 6px 10px;
     background-color: #fbfbfb;
     border: 1px solid #e4e4e4;
-    width: 100%;
+    width: 300px;
     background-color: #fbfbfb;
 }
 table.formBlock{
-    width: 510px;
-    text-align: center;
+    width: 500px;
+    text-align: left;
 }
 .addProductHeader{
     font-size: 32px;
@@ -49,6 +49,11 @@ table.formBlock{
     margin-inline-end: 0px;
     font-weight: bold;
     text-align: center;
+}
+.products{
+    float: right;
+    text-align: right;
+    margin-right: 0;
 }
 
 thead{
@@ -64,12 +69,12 @@ thead{
 .formBlock td{
     padding: 0 0 5px 0;
     height: 100%;
-    position: relative;
+
 }
 td {
     display: table-cell;
     vertical-align: inherit;
-    text-align: left;
+
 }
 
 tr {
@@ -83,8 +88,8 @@ form {
 }
 table{
     margin-top: 30px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .main-nav{
     width: 100%;
@@ -112,7 +117,7 @@ div{
   }
 .row{
     display: flex;
-    margin: 10px;
+    margin: 20px;
 }
 .tasks{
     display: flex;
@@ -124,6 +129,9 @@ div{
 }
 .button2{
     color: #E65100;
-    background: transparent;
+    background-color: #fff;
     border: 0px;
+}
+span{
+    background-color: #fff;
 }

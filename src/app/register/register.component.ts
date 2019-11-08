@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public service: RegisterService, public fb: FormBuilder, private toast: ToastrService) { }
+  constructor(public service: RegisterService, public fb: FormBuilder, private toast: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.service.formModel.reset();
@@ -19,15 +20,20 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     this.service.register().subscribe(
-      (res: any) => {
-        if(res.succeded){
+      (response:any) => {
+        if(response.success){
           this.service.formModel.reset();
-          this.toast.success('New User Successfully Added.', 'Success!.');
-        } else {
-          this.service.formModel.reset();
-          this.toast.success('User Successfully Added.', 'Success!.');
-            }
-          });
+            this.toast.success('New User Successfully Added.', 'Success!.');
+            this.router.navigateByUrl('/login');
+        }
+        else{
+          this.toast.error('Something not right.', 'Failed!.');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
         }
       
      

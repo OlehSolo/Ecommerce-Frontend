@@ -1,0 +1,94 @@
+.selectbuttons{
+    display: flex;
+    padding: 0px;
+}
+.navbar{
+  background: #795548 !important;
+  color: #F2F2F2;
+}
+button{
+    padding: 0px;
+    width: 200px;
+}
+.selectbuttons button{
+  border: 1px solid #9B9B9B;
+  background: transparent;
+  font-size: 8pt;
+  color: #9B9B9B;
+  height: 30px;;
+}
+.btn-checkout{
+  height: 30px;
+  margin-top: 5px;
+  background: #795548;
+  border: 0px;
+  color: #F2F2F2;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+.checkout{
+  float: right;
+  margin-left: 100px;
+}
+.listHeader{
+    display: flex;
+    background:#6D4C41;
+    margin: 10px;
+    color: #F2F2F2;
+    height: auto;
+}
+h5{
+    margin: 10px;
+    color: #F2F2F2;
+}
+h1{
+  font-size: 20px;
+  color: #F2F2F2;
+  margin: 10px;
+  display: flex;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+ol{
+    display: flex;
+}
+#addremove{
+    text-align: center;
+    
+  }
+  .btn-secondary{
+    background: #795548;
+    width: 30px;
+    height: 40px;
+  }
+  #addremove{
+    display: flex;
+    margin-top: 25px;
+  }
+ 
+  .btn
+  {
+    background: #795548;
+    border-radius: 0;
+    border: 0px;
+    font-weight: bold;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  
+  .bottomcart{
+    border-bottom: #e4e4e4 1px solid;
+    height: 100px;
+  }
+.itemcount{
+  margin-top: 10px;
+  margin-left: 3px;
+  margin-right: 3px;
+  color: #575757;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.col{
+  text-align: center;
+}

@@ -1,6 +1,6 @@
-<div class="row">
+<div class="container">
   <div class="col-md-6">
-    <form [formGroup]="service.formModel" >
+    <form [formGroup]="service.formModel" enctype="multipart/form-data" >
       <h1 class="addProductHeader">Add Product and Information</h1>
       <div class="form-group">
         <table class="formBlock">
@@ -25,8 +25,8 @@
                 <td><label class="controlLabel">Category</label></td>
                 <td>
                     <select formControlName="ProductCategory" type="text" class="form-control">
-                      <option value="freshfood">Fresh Food</option>
-                      <option value="pantry">Pantry</option>
+                      <option value="freshfood">Food</option>
+                      <option value="pantry">Beverages</option>
                       <option value="household">Household & Cleaning</option>
                       <option value="baby">Baby</option>
                       <option value="health">Health & Beauty</option>
@@ -34,12 +34,7 @@
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td><label class="controlLabel">Sub Category</label></td>
-                <td>
-                    <input  type="text" formControlName="ProductSubCategory"  class="form-control">
-                </td>
-            </tr>
+            
             <tr>
                 <td><label class="controlLabel">
                   ProductPrice
@@ -50,10 +45,10 @@
             </tr>
             <tr>
               <td><label class="controlLabel">
-                ProductPreviousPrice
+                Description
               </label></td>
               <td>
-                  <input formControlName="ProductPreviousPrice"  type="text" class="form-control">
+                  <input formControlName="ProductDescription"  type="text" class="form-control">
               </td>
           </tr>
             <tr>
@@ -64,14 +59,7 @@
                     <input formControlName="ProductBrand" type="text" class="form-control">
                 </td>
             </tr>
-            <tr>
-              <td><label class="controlLabel">
-                Mass
-              </label></td>
-              <td>
-                  <input formControlName="ProductMass" type="text" class="form-control">
-              </td>
-          </tr>
+           
           <tr>
             <td><label class="controlLabel">
               Barcode
@@ -84,7 +72,7 @@
         </table>
         <tr>
           <td>
-            <input  type="text"   formControlName="ProductImage" class="form-control" >
+            <input  type="file"   formControlName="ProductPicture" (change)="onFileChange($event)" class="form-control" >
           </td>
         </tr>
         <div style="display: flex">
@@ -96,26 +84,26 @@
     </form>
   </div>
 <div class="row">
-  <div class="col-md-9 products">
+  <div class="col-md-6 products">
     <table class="table table-borderless product-list">
       <thead class="thead">
         <th>ID</th>
         <th>Name</th>
         <th>Category</th>
         <th>Price</th>
-        <th>Mass</th>
+        <th>Description</th>
         <th>Remove</th>
         <th>Edit</th>
       </thead>
       <tbody>
-        <tr *ngFor="">
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
+        <tr *ngFor="let product of service.list">
+           <td>{{product.productId}}</td>
+           <td>{{product.productName}}</td>
+           <td>{{product.productCategory}}</td>
+           <td>{{product.productPrice}}</td>
+           <td>{{product.productDescription}}</td>
            <td>
-                <button class="fa fa-trash button1" (click)="OnRemove(product.productID)" ></button>
+                <button class="fa fa-trash button1" (click)="OnRemove(product.productId)" ></button>
            </td>
            <td>
               <button class="fa fa-edit button2" (click)="OnEdit(product)"></button>

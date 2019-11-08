@@ -1,20 +1,34 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <p>Ecommerce.com</p>
-    </div>
-    <ul>
-      <li><a routerLink="/login">SIGN IN </a></li>
-      <li><a routerLink="/register">SIGN UP </a></li>
-    </ul>
-  </div>
-</nav>
-<router-outlet>
 
-</router-outlet>
-<footer class="page-footer font-small">
-  <div class="footer-copyright text-center py-3">© 2019 Olebogeng Mongale
+<div class="container-fluid">
+
+  <div class="header">
+      <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <p>Ecommerce.com</p>
+            </div>
+            <ul>
+              <li><a routerLink="/login">SIGN IN </a></li>
+              <li><a routerLink="/register">SIGN UP </a></li>
+            </ul>
+          </div>
+        </nav>
   </div>
-</footer>
+     
+        <div class="content">
+            <router-outlet>
+              </router-outlet>
+        </div>
+        <div class="footer">
+            <footer class="page-footer font-small">
+                <div class="footer-copyright text-center py-3">© 2019 Olebogeng Mongale
+                </div>
+              </footer>
+        </div>
+        
+  
+  
+</div>
+
 
