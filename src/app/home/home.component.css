@@ -5,6 +5,14 @@
     justify-content: center;
 
 }
+.cart{
+  border-bottom: #BDBEC0 solid 1px;
+  margin: 20px;
+  width: auto;
+}
+.cart > h3 {
+  color: #90a4ae;
+}
 .logo{
   height: 35px;
   width: 100px;

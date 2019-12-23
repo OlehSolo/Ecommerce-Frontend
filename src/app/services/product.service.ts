@@ -10,11 +10,15 @@ export class ProductService {
   list: Product[];
   cartItems: Product[];
   total: number = 0;
+  price: number;
 
-  constructor(public formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(public formBuilder: FormBuilder, private http: HttpClient) {
+    
+   }
 
   readonly baseURI = 'http://localhost:8080/api/product';
   readonly uploadUri = 'http://localhost:8080/api';
+  readonly cartUri = 'http://localhost:8080/api/cart';
 
   formModel = this.formBuilder.group({
     ProductID: [''],
@@ -42,15 +46,7 @@ export class ProductService {
 
     return this.http.post(this.baseURI + '/insert', body);
   }
-imageUpload()
-{
 
-  var result = {
-    productImage: this.formModel.value.ProductPicture
-
-  }
-  return this.http.post(this.uploadUri + '/picture/upload', result);
-}
   listProducts(){
     this.http.get(this.baseURI + '/products')
       .toPromise().then(response => this.list = response as Product[]);
@@ -91,8 +87,8 @@ imageUpload()
     }
   }
   addItemToTrolley(product){
-    localStorage.setItem('product', JSON.stringify(product));
-  
+    return localStorage.setItem('product', JSON.stringify(product));
+    //this.http.post(this.cartUri + '/additem', product);
   }
   removeItemFromCart(product){
    localStorage.removeItem(product);
@@ -111,4 +107,14 @@ imageUpload()
     return JSON.parse(localStorage.getItem('product'));
   }
 
+  trolleyTotal()
+  {
+   let total=0;
+   for (let i in this.cartItems) {
+    this.price  = parseFloat(this.cartItems[i].productPrice);
+    total= total+(this.cartItems[i].quantity * this.price);
+     return total;
+   }
+  }
+  
 }

@@ -7,6 +7,6 @@ export class Product {
     productBrand: string;
     productDescription: string;
     productbarcode: string;
-    cartItemCount: number;
+    quantity: number = 1;
    
 }

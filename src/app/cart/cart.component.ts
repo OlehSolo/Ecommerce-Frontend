@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Product';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +17,9 @@ export class CartComponent implements OnInit {
   cartItems: Product[];
     cartTotal: number;
     price: number;
-  constructor(private service: ProductService) { }
+  constructor(private service: ProductService, 
+    private router: Router,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.trolley = this.service.getCartItemCount();
@@ -25,7 +31,7 @@ export class CartComponent implements OnInit {
   let total=0;
   for (let i in this.cartItems) {
    this.price  = parseFloat(this.cartItems[i].productPrice);
-    total= total+(this.cartItems[i].cartItemCount * this.price);
+    total= total+(this.cartItems[i].quantity * this.price);
  }
  
  return this.cartTotal=total;
@@ -46,17 +52,26 @@ export class CartComponent implements OnInit {
 OnIncrease(product){
   let total = 0;
   this.cartItems = this.service.getProductFromCart();
-  this.cartItems.find(pr=>pr.productId==product.productId).cartItemCount = product.cartItemCount+1;
+  this.cartItems.find(pr=>pr.productId==product.productId).quantity = product.quantity+1;
   this.service.addItemToTrolley(this.cartItems);
   this.trolleyTotal();
+  console.log(product.quantity);
 }
 
 OnReduce(product){
   let total = 0;
   this.cartItems=this.service.getProductFromCart();
-  this.cartItems.find(pr=>pr.productId==product.productId).cartItemCount = product.cartItemCount-1;
+  this.cartItems.find(pr=>pr.productId==product.productId).quantity = product.quantity-1;
   this.service.addItemToTrolley(this.cartItems);
   this.trolleyTotal();
 }
-
+onCheckout()
+{
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = true;
+  dialogConfig.disableClose = true;
+  dialogConfig.width ="80%";
+  dialogConfig.data = {total: this.trolley, price:this.cartTotal};
+   this.dialog.open(CheckoutComponent, dialogConfig);
+}
 }

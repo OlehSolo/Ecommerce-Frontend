@@ -2,15 +2,15 @@
   <div>
       <h1 class="subHeaderArea">Login to Start Shopping Now</h1>
   </div>
-  <form #form='ngForm'  autocomplete="off" (ngSubmit)="onSubmit(username.value, password.value)">
+  <form name="form" (ngSubmit)="submit()"  autocomplete="off">
               <div class="form-group">
                   <label class="controlLabel">Email/Username</label>
-                  <input class="form-control" #username ngModel name="username" type="text" required>
+                  <input class="form-control" [(ngModel)]= "usernameOrEmail" name="usernameOrEmail" type="text" required>
           
                 </div>
               <div class="form-group">
                   <label class="controlLabel">Password</label>
-                  <input class="form-control" #password ngModel name="username" type="password" required>
+                  <input class="form-control" [(ngModel)]="password" name="password" type="password" required>
                 </div>
       <div class="form-row">
         <div class="form-group">

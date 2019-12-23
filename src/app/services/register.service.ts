@@ -4,6 +4,8 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { JwtResponse } from '../response/JwtResponse';
 import { CookieService } from 'ngx-cookie-service';
+import { map } from 'rxjs/operators';
+import { User } from '../User';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class RegisterService {
     public name$ = this.nameTerms.asObservable();
   constructor(public formBuilder: FormBuilder, 
     private http: HttpClient,
-    private cookieService: CookieService) { 
+    private cookieService: CookieService)
+     { 
 
       
         const memo = localStorage.getItem('currentUser');
@@ -23,7 +26,7 @@ export class RegisterService {
         this.currentUser = this.currentUserSubject.asObservable();
         cookieService.set('currentUser', memo);
     }
-
+    private httpClient:HttpClient
   readonly baseURI = 'http://localhost:8080/api/auth';
 
   get currentUserValue() {
@@ -61,7 +64,7 @@ export class RegisterService {
   register(){
 
     var body = {
-      name : this.formModel.value.FirstName,
+      firstName : this.formModel.value.FirstName,
       lastName : this.formModel.value.LastName,
       phoneNumber : this.formModel.value.Mobile,
       username : this.formModel.value.Email,
@@ -78,6 +81,18 @@ export class RegisterService {
     return this.http.post(this.baseURI + '/signup', body);
   }
   signIn(usernameOrEmail, password){
+
+   /* const headers =new HttpHeaders({Authorization: 'Basic ' + btoa(usernameOrEmail + ':' + password)});
+    return this.httpClient.post<any>(this.baseURI + '/login', {headers}).pipe(
+      map(
+        userData => {
+          sessionStorage.setItem('usernameOrEmail', usernameOrEmail);
+          let tokenStr= 'Bearer '+userData.token;
+          sessionStorage.setItem('token', tokenStr);
+          return userData;
+        }
+      )
+    );*/
     var data = {usernameOrEmail , password};
     return this.http.post(this.baseURI + '/login', data);
   }

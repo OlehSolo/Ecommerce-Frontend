@@ -42,13 +42,7 @@ export class ProductComponent implements OnInit {
         console.log(err);
       }
     );
-    this.service.imageUpload().subscribe(
-      (response: any) => {
-        if(response.success){
-          this.Toastr.success("Picture Uploaded", "Success!")
-        } 
-      }
-    );
+   
   }
   SaveChanges(id: number, product){
     this.service.modifyProduct().subscribe(c => {
